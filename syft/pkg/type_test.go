@@ -60,6 +60,10 @@ func TestTypeFromPURL(t *testing.T) {
 			expected: PhpComposerPkg,
 		},
 		{
+			purl:     "pkg:pecl/memcached@3.2.0",
+			expected: PhpPeclPkg,
+		},
+		{
 			purl:     "pkg:maven/org.apache.xmlgraphics/batik-anim@1.9.1?type=zip&classifier=dist",
 			expected: JavaPkg,
 		},
@@ -83,6 +87,38 @@ func TestTypeFromPURL(t *testing.T) {
 			purl:     "pkg:hex/hpax/hpax@0.1.1",
 			expected: HexPkg,
 		},
+		{
+			purl:     "pkg:otp/accept@0.3.5",
+			expected: ErlangOTPPkg,
+		},
+		{
+			purl:     "pkg:generic/linux-kernel@5.10.15",
+			expected: LinuxKernelPkg,
+		},
+		{
+			purl:     "pkg:nix/glibc@2.34?hash=h0cnbmfcn93xm5dg2x27ixhag1cwndga",
+			expected: NixPkg,
+		},
+		{
+			purl:     "pkg:cran/base@4.3.0",
+			expected: Rpkg,
+		},
+		{
+			purl:     "pkg:luarocks/kong@3.7.0",
+			expected: LuaRocksPkg,
+		},
+		{
+			purl:     "pkg:swift/github.com/apple/swift-numerics/swift-numerics@1.0.2",
+			expected: SwiftPkg,
+		},
+		{
+			purl:     "pkg:swiplpack/condition@0.1.1",
+			expected: SwiplPackPkg,
+		},
+		{
+			purl:     "pkg:opam/ocaml-base-compiler@5.2.0",
+			expected: OpamPkg,
+		},
 	}
 
 	var pkgTypes []string
@@ -92,11 +128,15 @@ func TestTypeFromPURL(t *testing.T) {
 	}
 
 	// testing microsoft packages and jenkins-plugins and custom binary type
-	// is not valid for purl at this time
+	// and terraform types is not valid for purl at this time
 	expectedTypes.Remove(string(KbPkg))
 	expectedTypes.Remove(string(JenkinsPluginPkg))
 	expectedTypes.Remove(string(PortagePkg))
 	expectedTypes.Remove(string(BinaryPkg))
+	expectedTypes.Remove(string(LinuxKernelModulePkg))
+	expectedTypes.Remove(string(GithubActionPkg), string(GithubActionWorkflowPkg))
+	expectedTypes.Remove(string(WordpressPluginPkg))
+	expectedTypes.Remove(string(TerraformPkg))
 
 	for _, test := range tests {
 		t.Run(string(test.expected), func(t *testing.T) {
