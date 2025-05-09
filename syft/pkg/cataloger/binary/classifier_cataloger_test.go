@@ -1068,6 +1068,17 @@ func Test_Cataloger_PositiveCases(t *testing.T) {
 			},
 		},
 		{
+			logicalFixture: "erlang/26.1.2/linux-arm64",
+			expected: pkg.Package{
+				Name:      "erlang",
+				Version:   "26.1.2",
+				Type:      "binary",
+				PURL:      "pkg:generic/erlang@26.1.2",
+				Locations: locations("beam.smp"),
+				Metadata:  metadata("erlang-alpine-binary"),
+			},
+		},
+		{
 			logicalFixture: "swipl/9.3.8/linux-amd64",
 			expected: pkg.Package{
 				Name:      "swipl",
@@ -1239,6 +1250,17 @@ func Test_Cataloger_PositiveCases(t *testing.T) {
 				Version:   "1.7.0",
 				Type:      "binary",
 				PURL:      "pkg:github/fluent/fluent-bit@1.7.0",
+				Locations: locations("fluent-bit"),
+				Metadata:  metadata("fluent-bit-binary"),
+			},
+		},
+		{
+			logicalFixture: "fluent-bit/1.3.10/linux-arm",
+			expected: pkg.Package{
+				Name:      "fluent-bit",
+				Version:   "1.3.10",
+				Type:      "binary",
+				PURL:      "pkg:github/fluent/fluent-bit@1.3.10",
 				Locations: locations("fluent-bit"),
 				Metadata:  metadata("fluent-bit-binary"),
 			},
